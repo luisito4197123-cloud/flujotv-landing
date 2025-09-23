@@ -18,23 +18,33 @@
 
   gtag('config', 'G-EWX9DEMM5D');
 </script>
+
   <script>
-  (function () {
-    function trackWhatsAppClicks(selector) {
-      document.querySelectorAll(selector).forEach(function(a){
-        a.addEventListener('click', function(){
-          if (typeof gtag === 'function') {
-            gtag('event', 'whatsapp_click', {
-              event_category: 'engagement',
-              event_label: this.href
-            });
-          }
-        });
+  // Asegúrate de que esté cargado GA4 arriba en <head> con tu G-XXXX
+
+  // WhatsApp (Ecuador: 096270513 -> 593962705313)
+  const waNumber = '593962705313';
+  const waBase = 'https://wa.me/' + waNumber;
+
+  // ✅ MODIFICADA: ahora registra el evento en GA4 ANTES de abrir WhatsApp
+  function sendWhatsAppMessage(text){
+    const msg = encodeURIComponent(text);
+    const url = waBase + '?text=' + msg;
+
+    // --- GA4 tracking ---
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        event_label: text,   // qué paquete/acción pidieron
+        value: 1
       });
     }
-    trackWhatsAppClicks('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
-  })();
+    // --------------------
+
+    window.open(url, '_blank');
+  }
 </script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flujo TV — Planes y Revender</title>
