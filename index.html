@@ -18,6 +18,23 @@
 
   gtag('config', 'G-EWX9DEMM5D');
 </script>
+  <script>
+  (function () {
+    function trackWhatsAppClicks(selector) {
+      document.querySelectorAll(selector).forEach(function(a){
+        a.addEventListener('click', function(){
+          if (typeof gtag === 'function') {
+            gtag('event', 'whatsapp_click', {
+              event_category: 'engagement',
+              event_label: this.href
+            });
+          }
+        });
+      });
+    }
+    trackWhatsAppClicks('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+  })();
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Flujo TV — Planes y Revender</title>
