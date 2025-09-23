@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flujo TV — Planes y Revender</title>
+  <meta name="description" content="Contrata planes de Flujo TV o revende con créditos. Activación por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0b1220; --muted:#5a6b84; --border:#e9eef5; --card:#ffffff; --shadow:0 6px 24px rgba(16,24,40,.06);
+      --brand:#6ae2ff; --brand2:#56f8b8; /* degradado bonito anterior */
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px}
+    header.wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{height:36px}
+    nav{display:flex;gap:10px}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:24px 0 8px}
+    .h-title{font-size:clamp(30px,4.2vw,56px);line-height:1.02;margin:0 0 12px;font-weight:800}
+    .h-sub{color:var(--muted);font-size:clamp(14px,2.3vw,18px);margin:0}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .badge{border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px;background:#fff}
+
+    .sec-title{font-size:24px;margin:18px 0 12px}
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .gift{border:1px solid var(--border);border-radius:22px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+    .gift-head{background:linear-gradient(0deg,#ff6f3a, #ff4f12);padding:14px;display:flex;justify-content:center;align-items:center}
+    .gift-head img{height:24px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+    .gift-body{padding:18px}
+    .gift-title{font-weight:800;font-size:14px;letter-spacing:.4px;color:#111;text-transform:uppercase;margin:4px 0 6px}
+    .price{font-size:28px;font-weight:900;margin:2px 0 8px}
+    .list{margin:10px 0 14px;padding:0;list-style:none}
+    .list li{display:flex;gap:8px;align-items:flex-start;margin:8px 0;color:#1f2b3a}
+    .list li:before{content:'✓';font-weight:900;color:#16a34a}
+
+    .table{width:100%;border-collapse:collapse;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:16px;overflow:hidden}
+    .table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+    .table thead th{background:#f8fafc;color:#334155;font-weight:700}
+
+    .muted{color:var(--muted)}
+
+    .wa-fab{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;border:none;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+
+    @media (max-width:960px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}nav{flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="brand">
+      <img src="$1" alt="Flujo TV logo" loading="lazy" referrerpolicy="no-referrer"/>
+    </div>
+    <nav>
+      <a class="btn ghost" href="#inicio">Inicio</a>
+      <a class="btn ghost" href="#instalacion">Instalación</a>
+      <a class="btn ghost" href="#revender">Revender</a>
+      <a class="btn ghost" href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="inicio" data-section>
+      <div class="hero">
+        <div>
+          <h1 class="h-title">Flujo TV</h1>
+          <p class="h-sub">Entretenimiento simple y confiable. Elige tu plan y activa por WhatsApp.</p>
+          <div class="badges">
+            <span class="badge">Android · TV Box</span>
+            <span class="badge">Soporte WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="sec-title">Planes por Dispositivo</h2>
+      <div id="device-plans" class="grid grid-3"></div>
+
+      <h2 class="sec-title">Cuentas Completas</h2>
+      <div id="full-plans" class="grid grid-3"></div>
+    </section>
+
+    <section id="instalacion" class="section" data-section hidden>
+      <h2 class="sec-title">Instalación</h2>
+      <div class="gift">
+        <div class="gift-body">
+          <p>Funciona en <strong>Android</strong> y TV Box.</p>
+          <ul class="list" style="margin-top:0">
+            <li>Código Downloader para TV: <strong>5913300</strong></li>
+            <li>Link para celular: <a href="https://mobile.flujourl.top" target="_blank">https://mobile.flujourl.top</a></li>
+            <li>¿Quieres videos paso a paso? Escríbenos por WhatsApp y te los enviamos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="revender" class="section" data-section hidden>
+      <h2 class="sec-title">Revender con créditos</h2>
+      <div class="gift">
+        <div class="gift-body">
+          <p><strong>¿Qué es un crédito?</strong> 1 crédito = 1 mes de servicio para 1 usuario.</p>
+          <ul class="list" style="margin-top:0">
+            <li><strong>No caducan</strong>: puedes usarlos cuando quieras.</li>
+            <li><strong>Bonos al activar meses largos</strong>: 6 meses → +1 de regalo (se descuentan 6); 12 meses → +2 de regalo (se descuentan 12).</li>
+            <li><strong>Panel desde 30 créditos</strong>: podrás crear tu panel de Flujo TV.</li>
+            <li><strong>Asesoría incluida</strong>: tras la compra te damos manuales y guía completa del panel.</li>
+          </ul>
+          <table class="table">
+            <thead><tr><th>Créditos</th><th>Total</th><th>Por crédito</th><th>WhatsApp</th></tr></thead>
+            <tbody id="credits-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section" data-section hidden>
+      <h2 class="sec-title">Contacto</h2>
+      <div class="gift"><div class="gift-body">
+        <p>¿Dudas o información antes de comprar?</p>
+        <a id="wa-link" class="btn primary" href="#" target="_blank">Iniciar chat de información</a>
+      </div></div>
+    </section>
+  </main>
+
+  <footer class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);padding:28px 0 10px;font-size:14px">
+    <div>© <span id="y"></span> Flujo TV</div>
+    <div><a href="#contacto">WhatsApp</a></div>
+  </footer>
+
+  <a class="wa-fab" id="wa-fab" href="#" target="_blank">WhatsApp</a>
+
+  <script>
+    const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
+    const yEl=$('#y'); if(yEl) yEl.textContent=new Date().getFullYear();
+    const waNumber='59396270513', waBase='https://wa.me/'+waNumber, waMsg=t=>waBase+'?text='+encodeURIComponent(t);
+
+    const sections=$$('[data-section]');
+    function show(hash){const id=(hash||'#inicio').slice(1);sections.forEach(s=>s.hidden=s.id!==id);window.scrollTo({top:0,behavior:'instant'});} addEventListener('hashchange',()=>show(location.hash)); show(location.hash);
+
+    const LOGO='https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/AVL7kwOMb7i5rgZx/img_3849-mv0W6ErDNbcKL4l4.PNGo';
+    const devicePlans=[
+      {title:'1 DISPOSITIVO', months:'1 mes', price:'$3', features:['Vinculado a 1 solo dispositivo','Android / TV Box'], payload:'Plan por dispositivo — 1 mes — $3'},
+      {title:'1 DISPOSITIVO', months:'7 meses', price:'$15', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Ahorro por paquete'], payload:'Plan por dispositivo — 7 meses — $15'},
+      {title:'1 DISPOSITIVO', months:'14 meses', price:'$23', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Máximo ahorro'], payload:'Plan por dispositivo — 14 meses — $23'}
+    ];
+    const fullPlans=[
+      {title:'CUENTA COMPLETA', months:'1 mes', price:'$5', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 1 mes — $5'},
+      {title:'CUENTA COMPLETA', months:'3 meses', price:'$13', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 3 meses — $13'},
+      {title:'CUENTA COMPLETA', months:'6 meses + 1 gratis', price:'$25', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 7 meses'], payload:'Cuenta completa — 6 meses +1 gratis — $25'},
+      {title:'CUENTA COMPLETA', months:'12 meses + 2 gratis', price:'$43', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 14 meses'], payload:'Cuenta completa — 12 meses +2 gratis — $43'}
+    ];
+    const creditPacks=[{q:5,total:20,unit:4.00},{q:10,total:38,unit:3.80},{q:15,total:54,unit:3.60},{q:20,total:68,unit:3.40},{q:30,total:80,unit:2.67},{q:50,total:135,unit:2.70},{q:100,total:250,unit:2.50},{q:300,total:675,unit:2.25},{q:500,total:1000,unit:2.00},{q:1000,total:1900,unit:1.90}];
+
+    function giftCard({title,months,price,features,payload}){
+      return `<article class="gift">\n        <div class="gift-head"><img src="$1" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>\n        <div class="gift-body">\n          <div class="gift-title">${title}</div>\n          <div class="price">${months} — ${price}</div>\n          <ul class="list">${features.map(f=>`<li>${f}</li>`).join('')}</ul>\n          <a class="btn primary" data-type="plan" data-plan="${payload}">Contratar por WhatsApp</a>\n        </div>\n      </article>`;
+    }
+
+    $('#device-plans').innerHTML=devicePlans.map(giftCard).join('');
+    $('#full-plans').innerHTML=fullPlans.map(giftCard).join('');
+
+    const tbody=$('#credits-tbody');
+    if(tbody){tbody.innerHTML=creditPacks.map(p=>`<tr><td>${p.q}</td><td>$${p.total}</td><td>$${p.unit.toFixed(2)}</td><td><button class=\"btn primary\" data-type=\"credit\" data-credit=\"${p.q} créditos — $${p.total}\">Comprar</button></td></tr>`).join('');}
+
+    document.body.addEventListener('click',e=>{
+      const btn=e.target.closest('[data-type="plan"],[data-type="credit"],#wa-link,#wa-fab');
+      if(!btn) return;
+      if(btn.id==='wa-link'||btn.id==='wa-fab'){e.preventDefault();window.open(waMsg('Hola, quiero información de Flujo TV.'),'_blank');return;}
+      if(btn.dataset.type==='plan') sendWhatsAppMessage(`Hola, quiero contratar *${btn.dataset.plan}*.`);
+      if(btn.dataset.type==='credit') sendWhatsAppMessage(`Hola, quiero comprar *${btn.dataset.credit}* para revender.`);
+    });
+
+    function sendWhatsAppMessage(text){window.open(waMsg(text),'_blank');}
+  </script>
+</body>
+</html>
