@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="es">
+<!--
+  ========================= GUÍA RÁPIDA (solo para ti)
+  - LOGO: /images/logo.png  -> cambia el archivo en esa ruta para actualizar el logo en todo el sitio.
+  - NÚMERO WHATSAPP: busca la constante o variable donde esté 'https://wa.me/593962705313' y cámbiala por tu número en formato internacional.
+  - PLANES: edita los precios y textos dentro de las tarjetas (<article class="card"> ...).
+  - CRÉDITOS (Revender): edita la tabla dentro de la sección #revender.
+  - INSTALACIÓN: edita la sección #instalacion para cambiar código Downloader o enlaces.
+  - ESTILOS: últimos ajustes agregados al final del primer <style> (busca 'AJUSTES DE DISEÑO').
+  ========================= -->
+\1
+
+<!-- ===== FlujoTV: Favicon, SEO & Social Preview ===== -->
+<link rel="icon" type="image/png" href="images/IMG_7355.PNG">
+<link rel="apple-touch-icon" href="images/IMG_7355.PNG">
+<link rel="shortcut icon" href="images/IMG_7355.PNG">
+<meta name="theme-color" content="#ff4b00">
+
+<!-- Primary SEO -->
+<title>FlujoTV | Televisión y Streaming Digital</title>
+<meta name="title" content="FlujoTV | Televisión y Streaming Digital">
+<meta name="description" content="Disfruta de cientos de canales, series y películas con FlujoTV. Instala o revende fácilmente desde tu dispositivo. Atención por WhatsApp y Telegram.">
+
+<!-- Open Graph / Facebook / WhatsApp / Telegram -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flujotvec.org/">
+<meta property="og:title" content="FlujoTV - Tu entretenimiento sin límites">
+<meta property="og:description" content="Cientos de canales, series y películas. Instalación guiada por WhatsApp y Telegram. Planes flexibles para revendedores.">
+<meta property="og:image" content="https://flujotvec.org/images/IMG_7355.PNG">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://flujotvec.org/">
+<meta name="twitter:title" content="FlujoTV - Tu entretenimiento sin límites">
+<meta name="twitter:description" content="Cientos de canales, series y películas. Instalación guiada por WhatsApp y Telegram.">
+<meta name="twitter:image" content="https://flujotvec.org/images/IMG_7355.PNG">
+<!-- ===== /FlujoTV head ===== -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EWX9DEMM5D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EWX9DEMM5D');
+</script>
+
+  <script>
+  // Asegúrate de que esté cargado GA4 arriba en <head> con tu G-XXXX
+
+  // WhatsApp (Ecuador: 096270513 -> 593962705313)
+  const waNumber = '593962705313';
+  const waBase = 'https://wa.me/' + waNumber;
+
+  // ✅ MODIFICADA: ahora registra el evento en GA4 ANTES de abrir WhatsApp
+  function sendWhatsAppMessage(text){
+    const msg = encodeURIComponent(text);
+    const url = waBase + '?text=' + msg;
+
+    // --- GA4 tracking ---
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        event_label: text,   // qué paquete/acción pidieron
+        value: 1
+      });
+    }
+    // --------------------
+
+    window.open(url, '_blank');
+  }
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="description" content="Flujo TV: streaming con TV en vivo y on demand para América Latina. Compatible con Android, Android TV, TV Box, Fire TV Stick y Chromecast. Activa por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0b1220; --muted:#5a6b84; --border:#e9eef5; --card:#ffffff; --shadow:0 6px 24px rgba(16,24,40,.06);
+      --brand:#6ae2ff; --brand2:#56f8b8; /* degradado bonito anterior */
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Inter","DM Sans",-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px}
+    header.wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{height:36px}
+    nav{display:flex;gap:10px}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:24px 0 8px}
+    .h-title{font-size:clamp(30px,4.2vw,56px);line-height:1.02;margin:0 0 12px;font-weight:800}
+    .h-sub{color:var(--muted);font-size:clamp(14px,2.3vw,18px);margin:0}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .badge{border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px;background:#fff}
+
+    .sec-title{font-size:24px;margin:18px 0 12px}
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .gift{border:1px solid var(--border);border-radius:22px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+    .gift-head{background:linear-gradient(0deg,#ff6f3a, #ff4f12);padding:14px;display:flex;justify-content:center;align-items:center}
+    .gift-head img{height:24px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+    .gift-body{padding:18px}
+    .gift-title{font-weight:800;font-size:14px;letter-spacing:.4px;color:#111;text-transform:uppercase;margin:4px 0 6px}
+    .price{font-size:28px;font-weight:900;margin:2px 0 8px}
+    .list{margin:10px 0 14px;padding:0;list-style:none}
+    .list li{display:flex;gap:8px;align-items:flex-start;margin:8px 0;color:#1f2b3a}
+    .list li:before{content:'✓';font-weight:900;color:#16a34a}
+
+    .table{width:100%;border-collapse:collapse;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:16px;overflow:hidden}
+    .table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+    .table thead th{background:#f8fafc;color:#334155;font-weight:700}
+
+    .muted{color:var(--muted)}
+
+    .wa-fab{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;border:none;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+
+    @media (max-width:960px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}nav{flex-wrap:wrap}}
+  
+
+/* =========================
+   AJUSTES DE DISEÑO (solo para ti)
+   - Logo principal más grande
+   - Logo dentro de planes más grande
+   - Hero centrado (título, subtítulo y badges)
+   ========================= */
+.brand img{height:80px !important;}
+.gift-head img, .card img.logo{width:96px !important; display:block; margin:0 auto 12px;}
+.hero{ text-align:center !important; padding:60px 0 !important; }
+.h-title, .h-sub{ text-align:center !important; }
+.badges{ justify-content:center !important; }
+
+
+/* HERO TEXTO CENTRADO */
+.hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 60px 0 !important;
+}
+
+
+/* === AJUSTES DE LOGOS === */
+/* Logo en el header (arriba a la izquierda) */
+.brand img {
+  height: 70px !important; /* más grande */
+  width: auto !important;  /* mantener proporción */
+}
+
+/* Logo dentro de las tarjetas de planes */
+.gift-head img, .card img.logo {
+  width: auto !important;   /* sin deformar */
+  height: 50px !important;  /* tamaño fijo y consistente */
+  display: block !important;
+  margin: 0 auto 12px !important;
+}
+
+
+/* === AJUSTES DE LOGOS Y TARJETAS === */
+/* Logo en el header (arriba a la izquierda) */
+.brand img {
+  height: 160px !important; /* 4 veces más grande aprox */
+  width: auto !important;
+}
+
+/* Logo dentro de las tarjetas de planes */
+.gift-head img, .card img.logo {
+  width: auto !important;
+  height: 70px !important;  /* un poco más grande */
+  display: block !important;
+  margin: 0 auto 12px !important;
+}
+
+/* Color de fondo de la cabecera de las tarjetas de planes */
+.card h4, .gift-head {
+  background: linear-gradient(135deg, #28a745, #20c997, #17a2b8) !important; /* verde multicolor */
+  color: #fff !important;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+}
+
+
+/* === AJUSTE EXTRA: LOGO EN PLANES MÁS GRANDE === */
+.gift-head img, .card img.logo {
+  height: 90px !important; /* más grande que antes (70px) */
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN === */
+body {
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN Y TRANSPARENCIA === */
+body {
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.33; /* 33% de visibilidad */
+  z-index: -1;
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN Y TRANSPARENCIA (CORREGIDO) === */
+body {
+  position: relative;
+  z-index: 0;
+  background: none !important; /* quitar fondo directo */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.33; /* 33% visibilidad */
+  z-index: -1;
+}
+
+
+/* === FONDO CON TRANSPARENCIA 50% === */
+body::before {
+  opacity: 0.5 !important; /* 50% visibilidad */
+}
+
+/* === INTERACCIÓN BOTONES (HOVER) === */
+.btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* === RESTAURADO: FONDO COVER 50% === */
+body::before {
+  background-size: cover !important;
+  background-position: center center !important;
+  opacity: 0.5 !important;
+}
+
+
+/* === AJUSTE: FONDO COVER 70% === */
+body::before {
+  opacity: 0.7 !important;
+}
+
+
+/* === AJUSTES SOLICITADOS (TEXTO, MENÚ, WHATSAPP) === */
+/* 1) Subtítulo y badges en negro y un poco más gruesos */
+.h-sub{ color:#111 !important; font-weight:600 !important; }
+.badges .badge{ color:#111 !important; font-weight:600 !important; background:#ffffffd9 !important; border:1px solid rgba(0,0,0,.06) !important; }
+
+/* 2) Botones del menú con naranja multicolor (no transparentes) */
+.nav a.btn{
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color:#1a0f00 !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+}
+.nav a.btn:hover{
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.05) !important;
+}
+
+/* 3) Asegurar interacción en TODOS los botones de WhatsApp */
+a[href*="wa.me"], a[href*="api.whatsapp.com"]{
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+a[href*="wa.me"]:hover, a[href*="api.whatsapp.com"]:hover{
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, .35);
+  filter: saturate(1.08);
+}
+
+
+/* === FIX: MENÚ NARANJA MULTICOLOR (NO TRANSPARENTE) === */
+header.wrap.nav a.btn {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+}
+header.wrap.nav a.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === FORZAR MENÚ SÓLIDO (super específico) === */
+header.wrap.nav nav a.btn,
+header.wrap.nav nav a.btn.menu-solid {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #ffffff !important;
+  border: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+}
+header.wrap.nav nav a.btn:hover,
+header.wrap.nav nav a.btn.menu-solid:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === ULTRA FIX: Forzar menú sólido incluso si usan .btn.ghost u overrides === */
+header.wrap.nav nav a.btn,
+header.wrap.nav nav a.btn.ghost,
+header.wrap.nav nav a.btn[class*="ghost"] {
+  background-image: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  background-color: #ff8a1f !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+header.wrap.nav nav a.btn:hover,
+header.wrap.nav nav a.btn.ghost:hover,
+header.wrap.nav nav a.btn[class*="ghost"]:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === MENÚ NARANJA MULTICOLOR (selector correcto para tu HTML) === */
+header.wrap nav a.btn {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #fff !important;
+  border: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+}
+header.wrap nav a.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === OPTIMIZACIONES PARA MÓVILES === */
+@media (max-width: 600px){
+  /* Logo del header más proporcionado en pantallas pequeñas */
+  .brand img{ height: 80px !important; width: auto !important; }
+
+  /* Espaciado general un poco menor */
+  .wrap{ padding: 20px !important; }
+
+  /* Botones del menú más compactos */
+  header.wrap nav a.btn{ padding: 8px 12px !important; font-size: 14px !important; border-radius: 10px !important; }
+
+  /* Título y subtítulo del hero ajustados */
+  .h-title{ font-size: clamp(24px, 7vw, 36px) !important; }
+  .h-sub{ font-size: 14px !important; }
+
+  /* Badges más compactas y en múltiples líneas si hace falta */
+  .badges{ gap: 6px !important; }
+  .badge{ font-size: 12px !important; padding: 5px 8px !important; }
+
+  /* Tarjetas de planes: centrar y evitar alturas excesivas */
+  .gift{ min-height: 0 !important; }
+  .gift-head img{ height: 70px !important; }
+  .gift .btn.primary{ min-width: 160px !important; }
+
+  /* Botón flotante de WhatsApp más pequeño para no tapar contenido */
+  .wa-fab{ padding: 10px 14px !important; font-size: 14px !important; right: 14px !important; bottom: 14px !important; }
+}
+
+/* Robustez: imágenes responsivas por defecto */
+img{ max-width: 100%; height: auto; }
+
+
+/* === TIPOGRAFÍA Y HERO MEJORADO === */
+.h-title{ font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif !important; font-weight:900 !important; letter-spacing:-.02em !important; }
+.h-sub{ font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif !important; font-weight:600 !important; opacity:.9; }
+/* Intro description elegante y responsive */
+.intro-desc{ max-width:920px !important; margin:18px auto 0 !important; background:rgba(255,255,255,.92) !important; border:1px solid rgba(2,6,23,.06) !important; padding:clamp(14px,2.4vw,22px) clamp(14px,3vw,28px) !important; border-radius:16px !important; backdrop-filter:saturate(1.05) blur(2px) !important; box-shadow:0 10px 30px rgba(2,6,23,.08) !important; }
+.intro-desc p{ margin:8px 0 0 !important; font-size:clamp(15px,1.6vw,18px) !important; line-height:1.6 !important; }
+.intro-desc strong{ color:#0b1220; } .intro-desc em{ font-style:normal; color:#1f2b3a; }
+/* Animaciones elegantes */
+@keyframes fadeUp{ from{opacity:0; transform:translate3d(0,16px,0);} to{opacity:1; transform:translate3d(0,0,0);} }
+@keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+.reveal{ opacity:0; transform:translate3d(0,8px,0); will-change:opacity,transform; }
+.revealed{ opacity:1; transform:none; animation:fadeUp .66s cubic-bezier(.2,.8,.2,1) both; }
+.revealed.fade-only{ animation:fadeIn .6s ease-out both; }
+.stagger > *{ opacity:0; transform:translate3d(0,10px,0); }
+.stagger > *.in{ opacity:1; transform:none; animation:fadeUp .66s cubic-bezier(.2,.8,.2,1) both; }
+.stagger > *.d1{ animation-delay:.06s; } .stagger > *.d2{ animation-delay:.12s; } .stagger > *.d3{ animation-delay:.18s; } .stagger > *.d4{ animation-delay:.24s; } .stagger > *.d5{ animation-delay:.30s; }
+@media (prefers-reduced-motion:reduce){ .reveal, .stagger > *{ opacity:1 !important; transform:none !important; animation:none !important; } }
+/* Telegram UI */
+.tg-card{border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.tg-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,#0088cc,#43b0ff);color:#fff;font-weight:800}
+.tg-body{padding:16px}
+.tg-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08);background:#0088cc;color:#fff}
+.tg-banner{margin:18px 0 0;padding:14px 16px;border:1px dashed rgba(0,0,0,.12);background:#ffffffee;border-radius:14px}
+.tg-banner a{font-weight:700; text-decoration:underline}
+
+
+/* Telegram icon */
+.tg-head img{width:22px;height:22px;filter: drop-shadow(0 1px 2px rgba(0,0,0,.18));}
+.tg-banner .tg-ico{width:18px;height:18px;vertical-align:-3px;margin-right:6px;}
+
+
+/* === WhatsApp official green buttons & icons === */
+:root {
+  --wa-green: #25D366;
+  --wa-green-dark: #1ebe5d;
+  --tg-blue: #0088cc;
+}
+/* WhatsApp-styled primary actions */
+a.btn.primary[data-type="plan"],
+button.btn.primary[data-type="credit"],
+#wa-link,
+.wa-fab {
+  background: linear-gradient(135deg, var(--wa-green), var(--wa-green-dark)) !important;
+  color:#fff !important;
+  border:none !important;
+  box-shadow: 0 10px 26px rgba(37, 211, 102, .28) !important;
+  position: relative;
+  padding-left: 46px !important;
+}
+/* WhatsApp icon (SVG as data URI) */
+a.btn.primary[data-type="plan"]::before,
+button.btn.primary[data-type="credit"]::before,
+#wa-link::before,
+.wa-fab::before {
+  content:"";
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  width:22px; height:22px;
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path fill="%23fff" d="M128 0C57.31 0 0 57.31 0 128c0 24.41 6.7 47.19 18.35 66.67L0 256l63.84-17.77C82.15 251.26 104.34 256 128 256c70.69 0 128-57.31 128-128S198.69 0 128 0zm0 232.73c-22.36 0-43.16-6.38-60.68-17.36l-4.34-2.67l-37.92 10.56l10.14-38.56l-2.83-4.54C23.87 165.2 17.27 147.15 17.27 128C17.27 69.85 69.85 17.27 128 17.27S238.73 69.85 238.73 128S186.15 232.73 128 232.73z"/><path fill="%23fff" d="M186.6 151.7c-2.86-1.43-16.9-8.34-19.52-9.29c-2.62-.95-4.53-1.43-6.44 1.43c-1.91 2.86-7.38 9.29-9.05 11.2c-1.67 1.91-3.34 2.15-6.2.72c-2.86-1.43-12.06-4.45-22.99-14.18c-8.5-7.58-14.24-16.94-15.9-19.8c-1.67-2.86-.18-4.41 1.26-5.83c1.29-1.28 2.86-3.34 4.29-5.01c1.43-1.67 1.91-2.86 2.86-4.77c.95-1.91.48-3.58-.24-5.01c-.72-1.43-6.44-15.53-8.82-21.3c-2.33-5.6-4.71-4.86-6.44-4.95c-1.67-.09-3.58-.11-5.49-.11c-1.91 0-5.01.72-7.63 3.58c-2.62 2.86-10.03 9.78-10.03 23.84s10.27 27.67 11.71 29.59c1.43 1.91 20.16 30.78 48.86 43.15c6.82 2.94 12.14 4.7 16.3 6.01c6.85 2.18 13.1 1.88 18.04 1.14c5.5-.82 16.9-6.9 19.29-13.56c2.39-6.66 2.39-12.36 1.67-13.56c-.67-1.2-2.58-1.92-5.44-3.34z"/></svg>');
+  opacity:.95;
+}
+/* Hover state for WA */
+a.btn.primary[data-type="plan"]:hover,
+button.btn.primary[data-type="credit"]:hover,
+#wa-link:hover,
+.wa-fab:hover { filter:saturate(1.08); transform: translateY(-2px) scale(1.02); }
+
+/* Telegram link mirror button (DM) */
+.tg-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.tg-link, .tg-link.tg-msg {
+  background: var(--tg-blue) !important;
+  color:#fff !important;
+  border:none !important;
+}
+.tg-link.tg-msg::before{
+  content:"";
+  width:18px; height:18px; margin-right:8px;
+  display:inline-block; vertical-align:-3px;
+  background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><path fill="%23fff" d="M120 0C53.73 0 0 53.73 0 120s53.73 120 120 120s120-53.73 120-120S186.27 0 120 0zm58.58 82.66l-22.6 106.4c-1.71 7.7-6.27 9.6-12.7 5.98l-35.08-25.88l-16.92 16.3c-1.87 1.86-3.46 3.46-7.08 3.46l2.55-36.2l65.9-59.46c2.86-2.55-.62-3.96-4.43-1.42l-81.46 51.3l-35.1-10.98c-7.63-2.39-7.78-7.63 1.59-11.32l137.06-52.86c6.34-2.39 11.85 1.42 9.81 11.32z"/></svg>');
+  background-size:contain; background-repeat:no-repeat;
+}
+
+/* Floating Telegram FAB */
+.tg-fab{
+  position:fixed;
+  right:18px;
+  bottom:86px; /* above WA fab */
+  background: linear-gradient(135deg, #33a6e5, var(--tg-blue));
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:14px 18px;
+  font-weight:800;
+  box-shadow:0 10px 28px rgba(0,136,204,.28);
+}
+.tg-fab::before{
+  content:"";
+  position:absolute;
+  left:14px; top:50%; transform:translateY(-50%);
+  width:22px; height:22px;
+  background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><path fill="%23fff" d="M120 0C53.73 0 0 53.73 0 120s53.73 120 120 120s120-53.73 120-120S186.27 0 120 0zm58.58 82.66l-22.6 106.4c-1.71 7.7-6.27 9.6-12.7 5.98l-35.08-25.88l-16.92 16.3c-1.87 1.86-3.46 3.46-7.08 3.46l2.55-36.2l65.9-59.46c2.86-2.55-.62-3.96-4.43-1.42l-81.46 51.3l-35.1-10.98c-7.63-2.39-7.78-7.63 1.59-11.32l137.06-52.86c6.34-2.39 11.85 1.42 9.81 11.32z"/></svg>');
+  background-size:contain; background-repeat:no-repeat;
+  }
+.tg-fab{ padding-left: 54px !important; }
+
+/* === Position both FABs on the right; Telegram on top, WhatsApp below === */
+.tg-fab{ right:18px !important; bottom:86px !important; z-index:1000; }
+.wa-fab{ position:fixed !important; right:18px !important; bottom:18px !important; z-index:999; border-radius:999px; padding:14px 18px; }
+
+/* === Smooth interactive animations per state === */
+.btn, .tg-link, .tg-fab, .wa-fab, #wa-link, a.btn.primary[data-type="plan"], button.btn.primary[data-type="credit"]{
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, opacity .18s ease;
+  will-change: transform, box-shadow;
+}
+.btn:hover, .tg-link:hover, .tg-fab:hover, .wa-fab:hover, #wa-link:hover,
+a.btn.primary[data-type="plan"]:hover, button.btn.primary[data-type="credit"]:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);
+}
+.btn:active, .tg-link:active, .tg-fab:active, .wa-fab:active, #wa-link:active,
+a.btn.primary[data-type="plan"]:active, button.btn.primary[data-type="credit"]:active{
+  transform: translateY(0) scale(.98);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  filter: saturate(1.05);
+}
+.btn:focus-visible, .tg-link:focus-visible, .tg-fab:focus-visible, .wa-fab:focus-visible, #wa-link:focus-visible,
+a.btn.primary[data-type="plan"]:focus-visible, button.btn.primary[data-type="credit"]:focus-visible{
+  outline: 3px solid rgba(0,136,204,.35);
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+.btn[disabled], .tg-link[aria-disabled="true"]{
+  opacity:.65;
+  pointer-events:none;
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+/* Gentle highlight card for important notes */
+.note-card{
+  background: #f6fff9;
+  border-left: 4px solid #25D366;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin: 10px 0 14px;
+  font-size: 1.05rem;
+}
+.btn-lg{ font-size:1.06rem; padding:14px 22px; border-radius:14px; font-weight:800; }
+
+/* Responsive image pair for Modalidad 2 */
+.modal2-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 24px;
+}
+.modal2-gallery img {
+  width: 48%;
+  max-width: 460px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.modal2-gallery img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+}
+@media (max-width: 768px) {
+  .modal2-gallery img { width: 90%; }
+}
+</style>
+</head>
+<body>
+  <!--
+  ========================= GUÍA RÁPIDA (solo para ti)
+  - LOGO: /images/logo.png  -> cambia el archivo en esa ruta para actualizar el logo en todo el sitio.
+  - NÚMERO WHATSAPP: busca la constante o variable donde esté 'https://wa.me/593962705313' y cámbiala por tu número en formato internacional.
+  - PLANES: edita los precios y textos dentro de las tarjetas (<article class="card"> ...).
+  - CRÉDITOS (Revender): edita la tabla dentro de la sección #revender.
+  - INSTALACIÓN: edita la sección #instalacion para cambiar código Downloader o enlaces.
+  - ESTILOS: últimos ajustes agregados al final del primer <style> (busca 'AJUSTES DE DISEÑO').
+  ========================= -->
+<header class="wrap">
+    <div class="brand">
+      <img src="images/logo.png" alt="Flujo TV logo" loading="lazy" referrerpolicy="no-referrer"/>
+    </div>
+    <nav>
+      <a class="btn" href="#inicio">Inicio</a>
+      <a class="btn" href="#instalacion">Instalación</a>
+      <a class="btn" href="#revender">Revender</a>
+      <a class="btn" href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="inicio" data-section>
+    <!-- HERO CENTRADO — El título/subtítulo/badges se centran con las reglas CSS añadidas -->
+      <div class="hero">
+        <div>
+          <h1 class="h-title reveal">Flujo TV</h1>
+          <p class="h-sub reveal">Entretenimiento simple y confiable. Elige tu plan y activa por WhatsApp.</p>
+          <div class="intro-desc stagger">
+            <p><strong>Flujo TV</strong> es una plataforma de streaming que ofrece <strong>televisión en vivo</strong> y <strong>contenido on&nbsp;demand</strong> —series, películas y eventos deportivos— pensada para usuarios de toda <strong>América Latina</strong>.</p>
+            <p class="muted">Compatible con <strong>todos los dispositivos Android</strong> más usados: <em>Android&nbsp;TV</em>, <em>TV&nbsp;Box</em>, <em>Fire&nbsp;TV Stick</em>, <em>celulares y tablets Android</em> y <em>Chromecast</em>.</p>
+          </div>
+
+          <div class="badges">
+            <span class="badge">Android · TV Box</span>
+            <span class="badge">Soporte WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="sec-title">Planes por Dispositivo</h2>
+      <div id="device-plans" class="grid grid-3"><article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">1 mes — $3</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Plan por dispositivo — 1 mes — $3">Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">7 meses — $15</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li><li>Ahorro por paquete</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Plan por dispositivo — 7 meses — $15">Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">14 meses — $23</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li><li>Máximo ahorro</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Plan por dispositivo — 14 meses — $23">Contratar por WhatsApp</a>
+  </div>
+</article></div>
+
+      <h2 class="sec-title">Cuentas Completas</h2>
+      <div id="full-plans" class="grid grid-3"><article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">1 mes — $5</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Cuenta completa — 1 mes — $5">Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">3 meses — $13</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Cuenta completa — 3 meses — $13">Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">6 meses + 1 gratis — $25</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li><li>Bonificación: 7 meses</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Cuenta completa — 6 meses +1 gratis — $25">Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">12 meses + 2 gratis — $43</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li><li>Bonificación: 14 meses</li></ul>
+    <a class="btn primary" data-type="plan" data-plan="Cuenta completa — 12 meses +2 gratis — $43">Contratar por WhatsApp</a>
+  </div>
+</article></div>
+      <div class="tg-banner reveal">
+        ¿Quieres enterarte de <strong>promociones, avisos y eventos</strong>? <picture class="tg-ico">
+      <source srcset="images/telegram.svg" type="image/svg+xml">
+      <source srcset="images/telegram.png" type="image/png">
+      <img class="tg-ico" src="images/Telegram_logo.svg.png" alt="Telegram"/>
+    </picture> Únete a nuestro canal de Telegram:
+        <a href="https://t.me/flujotvecoficial" target="_blank" rel="noopener noreferrer">t.me/flujotvecoficial</a>.
+      </div>
+    </section>
+
+    <section id="instalacion" class="section" data-section hidden>
+      <h2 class="sec-title">Instalación</h2>
+      <div class="gift">
+        <div class="gift-body">
+          <p>Funciona en <strong>Android</strong> y TV Box.</p>
+          <ul class="list" style="margin-top:0">
+            <li>Código Downloader para TV: <strong>5913300</strong></li>
+            <li>Link para celular: <a href="https://mobile.flujourl.top" target="_blank">https://mobile.flujourl.top</a></li>
+            <li>¿Quieres videos paso a paso? Escríbenos por WhatsApp y te los enviamos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="revender" class="section" data-section hidden>
+      <h2 class="sec-title reveal">Revender con <span style="white-space:nowrap">cuentas</span></h2>
+      <div class="gift">
+        <div class="gift-body">
+          <p><strong>¿Qué es una cuenta?</strong> 1 cuenta = 1 mes de servicio para 1 usuario.</p>
+          <ul class="list" style="margin-top:0">
+            <li><strong>Sin caducidad</strong>: puedes activarlas cuando quieras.</li>
+            <li><strong>Bonos por meses largos</strong>: 6 meses → +1 de regalo (se descuentan 6); 12 meses → +2 de regalo (se descuentan 12).</li>
+            <li><strong>Panel desde 30 cuentas</strong>: podrás crear tu panel de Flujo TV.</li>
+            <li><strong>Asesoría incluida</strong>: tras la compra te damos manuales y guía completa del panel.</li>
+          </ul>
+          <table class="table">
+            <thead><tr><th>Cuentas</th><th>Total USD</th><th>Precio por cuenta</th><th>WhatsApp</th></tr></thead>
+            <tbody id="credits-tbody"><tr class="reveal"><td>5</td><td>$20</td><td>$4.00</td><td><button class="btn primary" data-type="credit" data-credit="5 créditos — $20">Comprar</button></td></tr><tr class="reveal"><td>10</td><td>$38</td><td>$3.80</td><td><button class="btn primary" data-type="credit" data-credit="10 créditos — $38">Comprar</button></td></tr><tr class="reveal"><td>15</td><td>$54</td><td>$3.60</td><td><button class="btn primary" data-type="credit" data-credit="15 créditos — $54">Comprar</button></td></tr><tr class="reveal"><td>20</td><td>$68</td><td>$3.40</td><td><button class="btn primary" data-type="credit" data-credit="20 créditos — $68">Comprar</button></td></tr><tr class="reveal"><td>30</td><td>$90</td><td>$3.00</td><td><button class="btn primary" data-type="credit" data-credit="30 créditos — $90">Comprar</button></td></tr><tr class="reveal"><td>50</td><td>$132.5</td><td>$2.65</td><td><button class="btn primary" data-type="credit" data-credit="50 créditos — $132.5">Comprar</button></td></tr><tr class="reveal"><td>100</td><td>$245</td><td>$2.45</td><td><button class="btn primary" data-type="credit" data-credit="100 créditos — $245">Comprar</button></td></tr><tr class="reveal"><td>300</td><td>$690</td><td>$2.30</td><td><button class="btn primary" data-type="credit" data-credit="300 créditos — $690">Comprar</button></td></tr><tr class="reveal"><td>500</td><td>$1100</td><td>$2.20</td><td><button class="btn primary" data-type="credit" data-credit="500 créditos — $1100">Comprar</button></td></tr><tr class="reveal"><td>1000</td><td>$2100</td><td>$2.10</td><td><button class="btn primary" data-type="credit" data-credit="1000 créditos — $2100">Comprar</button></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+          <div class="gift reveal" style="margin-top:16px">
+            <div class="gift-body">
+              
+
+<h3>💼 Modalidad 2 — Cuentas por Dispositivo (WhatsApp)</h3>
+<p>¿Deseas vender cuentas individuales para un solo dispositivo?<br>
+Adquiere paquetes de cuentas listas para <strong>1 dispositivo y 30 días cada una</strong>.<br>
+Es la forma más rápida de empezar: <strong>sin panel</strong>, <strong>con entrega inmediata</strong> y <strong>total flexibilidad</strong>.</p>
+
+<p class="note-card">🤖 <strong>Entrega automática por chatbot.</strong> <br>
+<strong>Sin panel</strong>, <strong>activa y vende cuando quieras</strong>.</p>
+
+<p><strong>🟢 Importante:</strong><br>
+Las cuentas <strong>no tienen fecha de caducidad</strong> hasta que decidas activarlas.<br>
+Podrás solicitarlas <strong>una a una</strong> en cualquier momento desde el bot de WhatsApp.<br>
+El tiempo de 30 días comienza <strong>solo cuando la cuenta es activada para tu cliente</strong>,<br>
+de modo que <strong>tu inversión nunca vence ni se desperdicia</strong>.</p>
+
+<p><strong>Paquetes disponibles:</strong><br>
+10 cuentas → $20 (≈ $2.00 por cuenta)<br>
+25 cuentas → $45 (≈ $1.80 por cuenta)</p>
+
+<p>
+  <a class="btn primary btn-lg" data-type="plan" href="https://wa.me/?text=Hola%20FlujoTV%2C%20quiero%20comprar%20el%20paquete%20de%20la%20Modalidad%202" target="_blank" rel="noopener noreferrer">
+    Comprar por WhatsApp
+  </a>
+</p>
+</div>
+              <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px">
+                <figure class="reveal" style="margin:0"><img src="images/modal-dispositivo-1.png" alt="" /></figure>
+                <figure class="reveal" style="margin:0"><img src="images/modal-dispositivo-2.png" alt="" /></figure>
+              </div>
+            </div>
+          </div>
+
+    </section>
+
+    <section id="contacto" class="section" data-section hidden>
+      <h2 class="sec-title reveal">Contacto</h2>
+      <div class="gift reveal"><div class="gift-body">
+        <p>¿Dudas o información antes de comprar?</p>
+        <a id="wa-link" class="btn primary" href="#" target="_blank">Iniciar chat por WhatsApp</a>
+        <p class="muted" style="margin-top:10px">Las compras y activaciones se gestionan por WhatsApp.</p>
+      </div></div>
+
+      <div class="tg-card reveal" style="margin-top:14px">
+        <div class="tg-head">
+          <picture>
+            <source srcset="images/telegram.svg" type="image/svg+xml">
+            <source srcset="images/telegram.png" type="image/png">
+            <img class="tg-icon" src="images/Telegram_logo.svg.png" alt="Telegram" loading="lazy" referrerpolicy="no-referrer"/>
+          </picture>
+          <span>Telegram</span>
+        </div>
+        <div class="tg-body">
+          <p>Canal con <strong>información, promociones y novedades</strong>. También realizo ventas por allí.</p>
+          <p style="margin:.4rem 0"><strong>Canal:</strong> <a href="https://t.me/flujotvecoficial" target="_blank" rel="noopener noreferrer">t.me/flujotvecoficial</a></p>
+          <p style="margin:.4rem 0"><strong>Usuario:</strong> <a href="https://t.me/luis4197" target="_blank" rel="noopener noreferrer">@luis4197</a></p>
+          <div class="tg-actions"><a class="tg-link" href="https://t.me/flujotvecoficial" target="_blank" rel="noopener noreferrer">Unirme al canal</a><a class="tg-link tg-msg" href="https://t.me/luis4197" target="_blank" rel="noopener noreferrer">Enviar mensaje</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);padding:28px 0 10px;font-size:14px">
+    <div>© <span id="y"></span> Flujo TV</div>
+    <div><a href="#contacto">WhatsApp & Telegram</a></div>
+  </footer>
+
+  <a class="wa-fab" id="wa-fab" href="#" target="_blank">WhatsApp</a>
+
+  <script>
+    const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
+    const yEl=$('#y'); if(yEl) yEl.textContent=new Date().getFullYear();
+    const waNumber='593962705313', waBase='https://wa.me/'+waNumber, waMsg=t=>waBase+'?text='+encodeURIComponent(t);
+
+    const sections=$$('[data-section]');
+    function show(hash){const id=(hash||'#inicio').slice(1);sections.forEach(s=>s.hidden=s.id!==id);window.scrollTo({top:0,behavior:'instant'});} addEventListener('hashchange',()=>show(location.hash)); show(location.hash);
+
+    const LOGO = 'images/logo.png';
+    const devicePlans=[
+      {title:'1 DISPOSITIVO', months:'1 mes', price:'$3', features:['Vinculado a 1 solo dispositivo','Android / TV Box'], payload:'Plan por dispositivo — 1 mes — $3'},
+      {title:'1 DISPOSITIVO', months:'7 meses', price:'$15', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Ahorro por paquete'], payload:'Plan por dispositivo — 7 meses — $15'},
+      {title:'1 DISPOSITIVO', months:'14 meses', price:'$23', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Máximo ahorro'], payload:'Plan por dispositivo — 14 meses — $23'}
+    ];
+    const fullPlans=[
+      {title:'CUENTA COMPLETA', months:'1 mes', price:'$5', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 1 mes — $5'},
+      {title:'CUENTA COMPLETA', months:'3 meses', price:'$13', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 3 meses — $13'},
+      {title:'CUENTA COMPLETA', months:'6 meses + 1 gratis', price:'$25', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 7 meses'], payload:'Cuenta completa — 6 meses +1 gratis — $25'},
+      {title:'CUENTA COMPLETA', months:'12 meses + 2 gratis', price:'$43', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 14 meses'], payload:'Cuenta completa — 12 meses +2 gratis — $43'}
+    ];
+    const creditPacks=[{q:5,total:20,unit:4.00},{q:10,total:38,unit:3.80},{q:15,total:54,unit:3.60},{q:20,total:68,unit:3.40},{q:30,total:80,unit:2.67},{q:50,total:135,unit:2.70},{q:100,total:250,unit:2.50},{q:300,total:675,unit:2.25},{q:500,total:1000,unit:2.00},{q:1000,total:1900,unit:1.90}];
+
+    function giftCard({title,months,price,features,payload}){
+      return `<article class="gift">\n        <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>\n        <div class="gift-body">\n          <div class="gift-title">${title}</div>\n          <div class="price">${months} — ${price}</div>\n          <ul class="list">${features.map(f=>`<li>${f}</li>`).join('')}</ul>\n          <a class="btn primary" data-type="plan" data-plan="${payload}">Contratar por WhatsApp</a>\n        </div>\n      </article>`;
+    }
+
+    $('#device-plans').innerHTML=devicePlans.map(giftCard).join('');
+    $('#full-plans').innerHTML=fullPlans.map(giftCard).join('');
+
+    const tbody=$('#credits-tbody');
+    if(tbody){tbody.innerHTML=creditPacks.map(p=>`<tr><td>${p.q}</td><td>$${p.total}</td><td>$${p.unit.toFixed(2)}</td><td><button class=\"btn primary\" data-type=\"credit\" data-credit=\"${p.q} créditos — $${p.total}\">Comprar</button></td></tr>`).join('');}
+
+    document.body.addEventListener('click',e=>{
+      const btn=e.target.closest('[data-type="plan"],[data-type="credit"],#wa-link,#wa-fab');
+      if(!btn) return;
+      if(btn.id==='wa-link'||btn.id==='wa-fab'){e.preventDefault();window.open(waMsg('Hola, quiero información de Flujo TV.'),'_blank');return;}
+      if(btn.dataset.type==='plan') sendWhatsAppMessage(`Hola, quiero contratar *${btn.dataset.plan}*.`);
+      if(btn.dataset.type==='credit') sendWhatsAppMessage(`Hola, quiero comprar *${btn.dataset.credit}* para revender.`);
+    });
+
+    function sendWhatsAppMessage(text){window.open(waMsg(text),'_blank');}
+  </script>
+
+<script>
+// Fallback: si algún estilo los deja transparentes, pintamos inline
+(function(){
+  const bg = 'linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18)';
+  const btns = document.querySelectorAll('header.wrap.nav nav a.btn');
+  btns.forEach(el => {
+    el.classList.add('menu-solid');
+    el.style.setProperty('background', bg, 'important');
+    el.style.setProperty('color', '#fff', 'important');
+    el.style.setProperty('border', 'none', 'important');
+    el.style.setProperty('opacity', '1', 'important');
+    el.style.setProperty('box-shadow', '0 10px 26px rgba(255,122,24,.28)', 'important');
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  const applySolid = () => {
+    const bg = 'linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18)';
+    document.querySelectorAll('header.wrap.nav nav a.btn').forEach(el => {
+      el.classList.remove('ghost');
+      el.style.setProperty('background-image', bg, 'important');
+      el.style.setProperty('background-color', '#ff8a1f', 'important');
+      el.style.setProperty('color', '#fff', 'important');
+      el.style.setProperty('border', 'none', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('backdrop-filter', 'none', 'important');
+    });
+  };
+  document.addEventListener('DOMContentLoaded', applySolid);
+  window.addEventListener('load', applySolid);
+  setTimeout(applySolid, 300);
+})();
+</script>
+
+
+<script>
+(function(){
+  function ready(fn){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fn); else fn(); }
+  ready(function(){
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -5% 0px', threshold:.1}) : null;
+
+    document.querySelectorAll('.reveal').forEach(function(el){ if(io){ io.observe(el);} else { el.classList.add('revealed'); } });
+
+    var so = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var kids = Array.from(e.target.children||[]);
+          kids.forEach(function(k,i){ var d=Math.min(5,i+1); k.classList.add('d'+d,'in'); });
+          so.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.12}) : null;
+    if(so){ document.querySelectorAll('.stagger').forEach(function(el){ so.observe(el); }); }
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  function ready(fn){
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+  ready(function(){
+    var sections = Array.from(document.querySelectorAll('[data-section]'));
+    function show(hash){
+      var id = (hash || '#inicio').replace('#','');
+      sections.forEach(function(s){ s.hidden = (s.id !== id); });
+      try{ window.scrollTo({ top: 0, behavior: 'auto' }); }catch(_){ window.scrollTo(0,0); }
+    }
+    function setActive(h){
+      var target = h || '#inicio';
+      document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === target);
+      });
+    }
+    window.addEventListener('hashchange', function(){ show(location.hash); setActive(location.hash); });
+
+    document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var h = this.getAttribute('href');
+        if(history && history.pushState) history.pushState(null, '', h);
+        show(h); setActive(h);
+      });
+    });
+
+    show(location.hash || '#inicio');
+    setActive(location.hash || '#inicio');
+  });
+})();
+</script>
+<style>
+header.wrap nav a.active{
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+</style>
+
+  <a class="tg-fab" id="tg-fab" href="https://t.me/luis4197" target="_blank" rel="noopener">Telegram</a>
+</body>
+</html>
