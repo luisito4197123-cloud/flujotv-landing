@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="es">
+<!--
+  ========================= GUÍA RÁPIDA (solo para ti)
+  - LOGO: /images/logo.png  -> cambia el archivo en esa ruta para actualizar el logo en todo el sitio.
+  - NÚMERO WHATSAPP: busca la constante o variable donde esté 'https://wa.me/593962705313' y cámbiala por tu número en formato internacional.
+  - PLANES: edita los precios y textos dentro de las tarjetas (<article class="card"> ...).
+  - CRÉDITOS (Revender): edita la tabla dentro de la sección #revender.
+  - INSTALACIÓN: edita la sección #instalacion para cambiar código Downloader o enlaces.
+  - ESTILOS: últimos ajustes agregados al final del primer <style> (busca 'AJUSTES DE DISEÑO').
+  ========================= -->
+<head><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EWX9DEMM5D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EWX9DEMM5D');
+</script>
+
+  <script>
+  // Asegúrate de que esté cargado GA4 arriba en <head> con tu G-XXXX
+
+  // WhatsApp (Ecuador: 096270513 -> 593962705313)
+  const waNumber = '593962705313';
+  const waBase = 'https://wa.me/' + waNumber;
+
+  // ✅ MODIFICADA: ahora registra el evento en GA4 ANTES de abrir WhatsApp
+  function sendWhatsAppMessage(text){
+    const msg = encodeURIComponent(text);
+    const url = waBase + '?text=' + msg;
+
+    // --- GA4 tracking ---
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        event_label: text,   // qué paquete/acción pidieron
+        value: 1
+      });
+    }
+    // --------------------
+
+    window.open(url, '_blank');
+  }
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flujo TV — Planes y Revender</title>
+  <meta name="description" content="Flujo TV: streaming con TV en vivo y on demand para América Latina. Compatible con Android, Android TV, TV Box, Fire TV Stick y Chromecast. Activa por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --text:#0b1220; --muted:#5a6b84; --border:#e9eef5; --card:#ffffff; --shadow:0 6px 24px rgba(16,24,40,.06);
+      --brand:#6ae2ff; --brand2:#56f8b8; /* degradado bonito anterior */
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Inter","DM Sans",-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px}
+    header.wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{height:36px}
+    nav{display:flex;gap:10px}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:24px 0 8px}
+    .h-title{font-size:clamp(30px,4.2vw,56px);line-height:1.02;margin:0 0 12px;font-weight:800}
+    .h-sub{color:var(--muted);font-size:clamp(14px,2.3vw,18px);margin:0}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .badge{border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px;background:#fff}
+
+    .sec-title{font-size:24px;margin:18px 0 12px}
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .gift{border:1px solid var(--border);border-radius:22px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+    .gift-head{background:linear-gradient(0deg,#ff6f3a, #ff4f12);padding:14px;display:flex;justify-content:center;align-items:center}
+    .gift-head img{height:24px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+    .gift-body{padding:18px}
+    .gift-title{font-weight:800;font-size:14px;letter-spacing:.4px;color:#111;text-transform:uppercase;margin:4px 0 6px}
+    .price{font-size:28px;font-weight:900;margin:2px 0 8px}
+    .list{margin:10px 0 14px;padding:0;list-style:none}
+    .list li{display:flex;gap:8px;align-items:flex-start;margin:8px 0;color:#1f2b3a}
+    .list li:before{content:'✓';font-weight:900;color:#16a34a}
+
+    .table{width:100%;border-collapse:collapse;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:16px;overflow:hidden}
+    .table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+    .table thead th{background:#f8fafc;color:#334155;font-weight:700}
+
+    .muted{color:var(--muted)}
+
+    .wa-fab{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061118;border:none;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 28px rgba(106,226,255,.25)}
+
+    @media (max-width:960px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}nav{flex-wrap:wrap}}
+  
+
+/* =========================
+   AJUSTES DE DISEÑO (solo para ti)
+   - Logo principal más grande
+   - Logo dentro de planes más grande
+   - Hero centrado (título, subtítulo y badges)
+   ========================= */
+.brand img{height:80px !important;}
+.gift-head img, .card img.logo{width:96px !important; display:block; margin:0 auto 12px;}
+.hero{ text-align:center !important; padding:60px 0 !important; }
+.h-title, .h-sub{ text-align:center !important; }
+.badges{ justify-content:center !important; }
+
+
+/* HERO TEXTO CENTRADO */
+.hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 60px 0 !important;
+}
+
+
+/* === AJUSTES DE LOGOS === */
+/* Logo en el header (arriba a la izquierda) */
+.brand img {
+  height: 70px !important; /* más grande */
+  width: auto !important;  /* mantener proporción */
+}
+
+/* Logo dentro de las tarjetas de planes */
+.gift-head img, .card img.logo {
+  width: auto !important;   /* sin deformar */
+  height: 50px !important;  /* tamaño fijo y consistente */
+  display: block !important;
+  margin: 0 auto 12px !important;
+}
+
+
+/* === AJUSTES DE LOGOS Y TARJETAS === */
+/* Logo en el header (arriba a la izquierda) */
+.brand img {
+  height: 160px !important; /* 4 veces más grande aprox */
+  width: auto !important;
+}
+
+/* Logo dentro de las tarjetas de planes */
+.gift-head img, .card img.logo {
+  width: auto !important;
+  height: 70px !important;  /* un poco más grande */
+  display: block !important;
+  margin: 0 auto 12px !important;
+}
+
+/* Color de fondo de la cabecera de las tarjetas de planes */
+.card h4, .gift-head {
+  background: linear-gradient(135deg, #28a745, #20c997, #17a2b8) !important; /* verde multicolor */
+  color: #fff !important;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+}
+
+
+/* === AJUSTE EXTRA: LOGO EN PLANES MÁS GRANDE === */
+.gift-head img, .card img.logo {
+  height: 90px !important; /* más grande que antes (70px) */
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN === */
+body {
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN Y TRANSPARENCIA === */
+body {
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.33; /* 33% de visibilidad */
+  z-index: -1;
+}
+
+
+/* === FONDO PERSONALIZADO CON IMAGEN Y TRANSPARENCIA (CORREGIDO) === */
+body {
+  position: relative;
+  z-index: 0;
+  background: none !important; /* quitar fondo directo */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.33; /* 33% visibilidad */
+  z-index: -1;
+}
+
+
+/* === FONDO CON TRANSPARENCIA 50% === */
+body::before {
+  opacity: 0.5 !important; /* 50% visibilidad */
+}
+
+/* === INTERACCIÓN BOTONES (HOVER) === */
+.btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* === RESTAURADO: FONDO COVER 50% === */
+body::before {
+  background-size: cover !important;
+  background-position: center center !important;
+  opacity: 0.5 !important;
+}
+
+
+/* === AJUSTE: FONDO COVER 70% === */
+body::before {
+  opacity: 0.7 !important;
+}
+
+
+/* === AJUSTES SOLICITADOS (TEXTO, MENÚ, WHATSAPP) === */
+/* 1) Subtítulo y badges en negro y un poco más gruesos */
+.h-sub{ color:#111 !important; font-weight:600 !important; }
+.badges .badge{ color:#111 !important; font-weight:600 !important; background:#ffffffd9 !important; border:1px solid rgba(0,0,0,.06) !important; }
+
+/* 2) Botones del menú con naranja multicolor (no transparentes) */
+.nav a.btn{
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color:#1a0f00 !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+}
+.nav a.btn:hover{
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.05) !important;
+}
+
+/* 3) Asegurar interacción en TODOS los botones de WhatsApp */
+a[href*="wa.me"], a[href*="api.whatsapp.com"]{
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+a[href*="wa.me"]:hover, a[href*="api.whatsapp.com"]:hover{
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, .35);
+  filter: saturate(1.08);
+}
+
+
+/* === FIX: MENÚ NARANJA MULTICOLOR (NO TRANSPARENTE) === */
+header.wrap.nav a.btn {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+}
+header.wrap.nav a.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === FORZAR MENÚ SÓLIDO (super específico) === */
+header.wrap.nav nav a.btn,
+header.wrap.nav nav a.btn.menu-solid {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #ffffff !important;
+  border: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+}
+header.wrap.nav nav a.btn:hover,
+header.wrap.nav nav a.btn.menu-solid:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === ULTRA FIX: Forzar menú sólido incluso si usan .btn.ghost u overrides === */
+header.wrap.nav nav a.btn,
+header.wrap.nav nav a.btn.ghost,
+header.wrap.nav nav a.btn[class*="ghost"] {
+  background-image: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  background-color: #ff8a1f !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+header.wrap.nav nav a.btn:hover,
+header.wrap.nav nav a.btn.ghost:hover,
+header.wrap.nav nav a.btn[class*="ghost"]:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === MENÚ NARANJA MULTICOLOR (selector correcto para tu HTML) === */
+header.wrap nav a.btn {
+  background: linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18) !important;
+  color: #fff !important;
+  border: none !important;
+  opacity: 1 !important;
+  box-shadow: 0 10px 26px rgba(255,122,24,.28) !important;
+}
+header.wrap nav a.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(255,122,24,.38) !important;
+  filter: saturate(1.1);
+}
+
+
+/* === OPTIMIZACIONES PARA MÓVILES === */
+@media (max-width: 600px){
+  /* Logo del header más proporcionado en pantallas pequeñas */
+  .brand img{ height: 80px !important; width: auto !important; }
+
+  /* Espaciado general un poco menor */
+  .wrap{ padding: 20px !important; }
+
+  /* Botones del menú más compactos */
+  header.wrap nav a.btn{ padding: 8px 12px !important; font-size: 14px !important; border-radius: 10px !important; }
+
+  /* Título y subtítulo del hero ajustados */
+  .h-title{ font-size: clamp(24px, 7vw, 36px) !important; }
+  .h-sub{ font-size: 14px !important; }
+
+  /* Badges más compactas y en múltiples líneas si hace falta */
+  .badges{ gap: 6px !important; }
+  .badge{ font-size: 12px !important; padding: 5px 8px !important; }
+
+  /* Tarjetas de planes: centrar y evitar alturas excesivas */
+  .gift{ min-height: 0 !important; }
+  .gift-head img{ height: 70px !important; }
+  .gift .btn.primary{ min-width: 160px !important; }
+
+  /* Botón flotante de WhatsApp más pequeño para no tapar contenido */
+  .wa-fab{ padding: 10px 14px !important; font-size: 14px !important; right: 14px !important; bottom: 14px !important; }
+}
+
+/* Robustez: imágenes responsivas por defecto */
+img{ max-width: 100%; height: auto; }
+
+
+/* === TIPOGRAFÍA Y HERO MEJORADO === */
+.h-title{ font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif !important; font-weight:900 !important; letter-spacing:-.02em !important; }
+.h-sub{ font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif !important; font-weight:600 !important; opacity:.9; }
+/* Intro description elegante y responsive */
+.intro-desc{ max-width:920px !important; margin:18px auto 0 !important; background:rgba(255,255,255,.92) !important; border:1px solid rgba(2,6,23,.06) !important; padding:clamp(14px,2.4vw,22px) clamp(14px,3vw,28px) !important; border-radius:16px !important; backdrop-filter:saturate(1.05) blur(2px) !important; box-shadow:0 10px 30px rgba(2,6,23,.08) !important; }
+.intro-desc p{ margin:8px 0 0 !important; font-size:clamp(15px,1.6vw,18px) !important; line-height:1.6 !important; }
+.intro-desc strong{ color:#0b1220; } .intro-desc em{ font-style:normal; color:#1f2b3a; }
+/* Animaciones elegantes */
+@keyframes fadeUp{ from{opacity:0; transform:translate3d(0,16px,0);} to{opacity:1; transform:translate3d(0,0,0);} }
+@keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+.reveal{ opacity:0; transform:translate3d(0,8px,0); will-change:opacity,transform; }
+.revealed{ opacity:1; transform:none; animation:fadeUp .66s cubic-bezier(.2,.8,.2,1) both; }
+.revealed.fade-only{ animation:fadeIn .6s ease-out both; }
+.stagger > *{ opacity:0; transform:translate3d(0,10px,0); }
+.stagger > *.in{ opacity:1; transform:none; animation:fadeUp .66s cubic-bezier(.2,.8,.2,1) both; }
+.stagger > *.d1{ animation-delay:.06s; } .stagger > *.d2{ animation-delay:.12s; } .stagger > *.d3{ animation-delay:.18s; } .stagger > *.d4{ animation-delay:.24s; } .stagger > *.d5{ animation-delay:.30s; }
+@media (prefers-reduced-motion:reduce){ .reveal, .stagger > *{ opacity:1 !important; transform:none !important; animation:none !important; } }
+/* Telegram UI */
+.tg-card{border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.tg-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,#0088cc,#43b0ff);color:#fff;font-weight:800}
+.tg-body{padding:16px}
+.tg-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.08);background:#0088cc;color:#fff}
+.tg-banner{margin:18px 0 0;padding:14px 16px;border:1px dashed rgba(0,0,0,.12);background:#ffffffee;border-radius:14px}
+.tg-banner a{font-weight:700; text-decoration:underline}
+
+
+/* Telegram icon */
+.tg-head img{width:22px;height:22px;filter: drop-shadow(0 1px 2px rgba(0,0,0,.18));}
+.tg-banner .tg-ico{width:18px;height:18px;vertical-align:-3px;margin-right:6px;}
+
+
+/* Iconic buttons */
+.btn.icon{display:inline-flex;align-items:center;gap:8px}
+.btn.whatsapp{background:#25D366!important;color:#fff!important}
+.btn.telegram{background:linear-gradient(135deg,#229ED9,#2AABEE)!important;color:#fff!important}
+.wa-ico{width:18px;height:18px;vertical-align:-3px}
+.tg-ico{width:22px;height:22px;vertical-align:-3px}
+/* Header Telegram icon */
+.tg-icon{width:32px;height:32px;margin-right:8px;vertical-align:middle}
+/* Floating buttons */
+#wa-fab,#tg-fab{display:inline-flex;align-items:center;gap:8px}
+
+
+/* WhatsApp card (matching Telegram style) */
+.wa-card{border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px}
+.wa-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;font-weight:800}
+.wa-body{padding:16px}
+.wa-ico{width:20px;height:20px;filter: drop-shadow(0 1px 2px rgba(0,0,0,.18));}
+
+
+/* Floating Telegram button */
+#tg-fab{position:fixed; right:18px; bottom:86px; z-index:60; border-radius:999px; padding:12px 16px; background:linear-gradient(135deg,#229ED9,#2AABEE); color:#fff; font-weight:800; box-shadow:0 12px 30px rgba(0,0,0,.18); display:inline-flex; align-items:center; gap:8px}
+
+</style>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/favicon-safari-pinned.svg" color="#0bb17c">
+  <meta name="theme-color" content="#0bb17c">
+
+</head>
+<body>
+  <!--
+  ========================= GUÍA RÁPIDA (solo para ti)
+  - LOGO: /images/logo.png  -> cambia el archivo en esa ruta para actualizar el logo en todo el sitio.
+  - NÚMERO WHATSAPP: busca la constante o variable donde esté 'https://wa.me/593962705313' y cámbiala por tu número en formato internacional.
+  - PLANES: edita los precios y textos dentro de las tarjetas (<article class="card"> ...).
+  - CRÉDITOS (Revender): edita la tabla dentro de la sección #revender.
+  - INSTALACIÓN: edita la sección #instalacion para cambiar código Downloader o enlaces.
+  - ESTILOS: últimos ajustes agregados al final del primer <style> (busca 'AJUSTES DE DISEÑO').
+  ========================= -->
+<header class="wrap">
+    <div class="brand">
+      <img src="images/logo.png" alt="Flujo TV logo" loading="lazy" referrerpolicy="no-referrer"/>
+    </div>
+    <nav>
+      <a class="btn" href="#inicio">Inicio</a>
+      <a class="btn" href="#instalacion">Instalación</a>
+      <a class="btn" href="#revender">Revender</a>
+      <a class="btn" href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="inicio" data-section>
+    <!-- HERO CENTRADO — El título/subtítulo/badges se centran con las reglas CSS añadidas -->
+      <div class="hero">
+        <div>
+          <h1 class="h-title reveal">Flujo TV</h1>
+          <p class="h-sub reveal">Entretenimiento simple y confiable. Elige tu plan y activa por WhatsApp.</p>
+          <div class="intro-desc stagger">
+            <p><strong>Flujo TV</strong> es una plataforma de streaming que ofrece <strong>televisión en vivo</strong> y <strong>contenido on&nbsp;demand</strong> —series, películas y eventos deportivos— pensada para usuarios de toda <strong>América Latina</strong>.</p>
+            <p class="muted">Compatible con <strong>todos los dispositivos Android</strong> más usados: <em>Android&nbsp;TV</em>, <em>TV&nbsp;Box</em>, <em>Fire&nbsp;TV Stick</em>, <em>celulares y tablets Android</em> y <em>Chromecast</em>.</p>
+          </div>
+
+          <div class="badges">
+            <span class="badge">Android · TV Box</span>
+            <span class="badge">Soporte WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="sec-title">Planes por Dispositivo</h2>
+      <div id="device-plans" class="grid grid-3"><article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">1 mes — $3</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Plan por dispositivo — 1 mes — $3"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">7 meses — $15</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li><li>Ahorro por paquete</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Plan por dispositivo — 7 meses — $15"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">1 DISPOSITIVO</div>
+    <div class="price">14 meses — $23</div>
+    <ul class="list"><li>Vinculado a 1 solo dispositivo</li><li>Android / TV Box</li><li>Máximo ahorro</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Plan por dispositivo — 14 meses — $23"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article></div>
+
+      <h2 class="sec-title">Cuentas Completas</h2>
+      <div id="full-plans" class="grid grid-3"><article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">1 mes — $5</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Cuenta completa — 1 mes — $5"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">3 meses — $13</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Cuenta completa — 3 meses — $13"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">6 meses + 1 gratis — $25</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li><li>Bonificación: 7 meses</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Cuenta completa — 6 meses +1 gratis — $25"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article>
+<article class="gift reveal">
+  <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>
+  <div class="gift-body">
+    <div class="gift-title">CUENTA COMPLETA</div>
+    <div class="price">12 meses + 2 gratis — $43</div>
+    <ul class="list"><li>Cuenta personal</li><li>Hasta 3 dispositivos simultáneos</li><li>Bonificación: 14 meses</li></ul>
+    <a class="btn primary icon whatsapp" data-type="plan" data-plan="Cuenta completa — 12 meses +2 gratis — $43"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>
+  </div>
+</article></div>
+      
+              
+            </div>
+          </div>
+
+    
+  <div class="tg-banner reveal" style="display:block;margin-top:18px">
+    ¿Quieres enterarte de <strong>promociones, avisos y eventos</strong>? 
+    <svg class="tg-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="22" height="22" aria-hidden="true" style="vertical-align:-4px;margin:0 6px">
+      <defs><linearGradient id="tg_b4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs>
+      <circle cx="120" cy="120" r="120" fill="url(#tg_b4)"/><path fill="#fff" d="M178 70 39 123c-4 2-4 7 1 9l35 11 14 44c1 4 6 5 9 2l20-20 37 27c3 2 8 1 9-3l17-113c1-5-3-9-8-7zM90 169l6-19 51-47-64 41 7 25z"/>
+    </svg>
+    Únete a nuestro canal de Telegram:
+    <a href="https://t.me/flujotvecoficial" target="_blank" rel="noopener noreferrer">t.me/flujotvecoficial</a>.
+  </div>
+
+</section>
+
+    <section id="contacto" class="section" data-section hidden>
+      <h2 class="sec-title reveal">Contacto</h2>
+      <div class="wa-card reveal"><div class="wa-head"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true"><defs><linearGradient id="wa_g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs><path fill="url(#wa_g2)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/><path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/></svg><span>WhatsApp</span></div><div class="wa-body">
+        <p>¿Dudas o información antes de comprar?</p>
+        <a id="wa-link" class="btn primary icon whatsapp" href="#" target="_blank"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Iniciar chat por WhatsApp</a>
+        <p class="muted" style="margin-top:10px">Las compras y activaciones se gestionan por WhatsApp.</p>
+      </div></div></div>
+
+      <div class="tg-card reveal" style="margin-top:14px">
+        <div class="tg-head">
+          <picture>
+            <source srcset="images/telegram.svg" type="image/svg+xml">
+            <source srcset="images/telegram.png" type="image/png">
+            <img class="tg-icon" src="images/Telegram_logo.svg.png" alt="Telegram" loading="lazy" referrerpolicy="no-referrer"/>
+          </picture>
+          <span>Telegram</span>
+        </div>
+        <div class="tg-body">
+          <p>Canal con <strong>información, promociones y novedades</strong>. También realizo ventas por allí.</p>
+          <p style="margin:.4rem 0"><strong>Canal:</strong> <a href="https://t.me/flujotvecoficial" target="_blank" rel="noopener noreferrer">t.me/flujotvecoficial</a></p>
+          <p style="margin:.4rem 0"><strong>Usuario:</strong> <a href="https://t.me/luis4197" target="_blank" rel="noopener noreferrer">@luis4197</a></p>
+          <div class="btn-row" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn icon telegram" href="https://t.me/flujotvecoficial" target="_blank" rel="noopener"><svg class="tg-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="22" height="22" aria-hidden="true">
+  <defs><linearGradient id="tg_b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs>
+  <circle cx="120" cy="120" r="120" fill="url(#tg_b)"/><path fill="#fff" d="M178 70 39 123c-4 2-4 7 1 9l35 11 14 44c1 4 6 5 9 2l20-20 37 27c3 2 8 1 9-3l17-113c1-5-3-9-8-7zM90 169l6-19 51-47-64 41 7 25z"/>
+</svg> Unirme al canal</a><a class="btn icon telegram" href="https://t.me/luis4197" target="_blank" rel="noopener"><svg class="tg-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="22" height="22" aria-hidden="true">
+  <defs><linearGradient id="tg_b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs>
+  <circle cx="120" cy="120" r="120" fill="url(#tg_b)"/><path fill="#fff" d="M178 70 39 123c-4 2-4 7 1 9l35 11 14 44c1 4 6 5 9 2l20-20 37 27c3 2 8 1 9-3l17-113c1-5-3-9-8-7zM90 169l6-19 51-47-64 41 7 25z"/>
+</svg> Escribir por Telegram</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);padding:28px 0 10px;font-size:14px">
+    <div>© <span id="y"></span> Flujo TV</div>
+    <div><a href="#contacto">WhatsApp & Telegram</a></div>
+  </footer>
+
+  <a class="wa-fab" id="wa-fab" href="#" target="_blank"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> WhatsApp</a>
+
+  <script>
+    const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>Array.from(c.querySelectorAll(s));
+    const yEl=$('#y'); if(yEl) yEl.textContent=new Date().getFullYear();
+    const waNumber='593962705313', waBase='https://wa.me/'+waNumber, waMsg=t=>waBase+'?text='+encodeURIComponent(t);
+
+    const sections=$$('[data-section]');
+    function show(hash){const id=(hash||'#inicio').slice(1);sections.forEach(s=>s.hidden=s.id!==id);window.scrollTo({top:0,behavior:'instant'});} addEventListener('hashchange',()=>show(location.hash)); show(location.hash);
+
+    const LOGO = 'images/logo.png';
+    const devicePlans=[
+      {title:'1 DISPOSITIVO', months:'1 mes', price:'$3', features:['Vinculado a 1 solo dispositivo','Android / TV Box'], payload:'Plan por dispositivo — 1 mes — $3'},
+      {title:'1 DISPOSITIVO', months:'7 meses', price:'$15', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Ahorro por paquete'], payload:'Plan por dispositivo — 7 meses — $15'},
+      {title:'1 DISPOSITIVO', months:'14 meses', price:'$23', features:['Vinculado a 1 solo dispositivo','Android / TV Box','Máximo ahorro'], payload:'Plan por dispositivo — 14 meses — $23'}
+    ];
+    const fullPlans=[
+      {title:'CUENTA COMPLETA', months:'1 mes', price:'$5', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 1 mes — $5'},
+      {title:'CUENTA COMPLETA', months:'3 meses', price:'$13', features:['Cuenta personal','Hasta 3 dispositivos simultáneos'], payload:'Cuenta completa — 3 meses — $13'},
+      {title:'CUENTA COMPLETA', months:'6 meses + 1 gratis', price:'$25', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 7 meses'], payload:'Cuenta completa — 6 meses +1 gratis — $25'},
+      {title:'CUENTA COMPLETA', months:'12 meses + 2 gratis', price:'$43', features:['Cuenta personal','Hasta 3 dispositivos simultáneos','Bonificación: 14 meses'], payload:'Cuenta completa — 12 meses +2 gratis — $43'}
+    ];
+    const creditPacks=[{q:5,total:20,unit:4.00},{q:10,total:38,unit:3.80},{q:15,total:54,unit:3.60},{q:20,total:68,unit:3.40},{q:30,total:80,unit:2.67},{q:50,total:135,unit:2.70},{q:100,total:250,unit:2.50},{q:300,total:675,unit:2.25},{q:500,total:1000,unit:2.00},{q:1000,total:1900,unit:1.90}];
+
+    function giftCard({title,months,price,features,payload}){
+      return `<article class="gift">\n        <div class="gift-head"><img src="images/logo.png" alt="Flujo TV" loading="lazy" referrerpolicy="no-referrer"/></div>\n        <div class="gift-body">\n          <div class="gift-title">${title}</div>\n          <div class="price">${months} — ${price}</div>\n          <ul class="list">${features.map(f=>`<li>${f}</li>`).join('')}</ul>\n          <a class="btn primary icon whatsapp" data-type="plan" data-plan="${payload}"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="18" height="18" aria-hidden="true">
+  <defs><linearGradient id="wa_g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25D366"/><stop offset="1" stop-color="#128C7E"/></linearGradient></defs>
+  <path fill="url(#wa_g)" d="M128 20c-59.6 0-108 46.9-108 104.7 0 18.5 5.2 36.6 15.1 52.4L20 236l60-15.6c15.4 8.4 32.8 12.8 50.8 12.8 59.6 0 108-46.9 108-104.7S187.6 20 128 20z"/>
+  <path fill="#fff" d="M95.7 81.4c-2.4-5.3-4.9-5.4-7.1-5.5-1.9-.1-4.1-.1-6.3-.1s-5.8.8-8.8 4.1c-3 3.3-11.6 11.3-11.6 27.6s11.9 32 13.6 34.2 23.4 37.5 57.8 51 34.8 10.1 41 8.5c6.3-1.6 20.1-8.2 22.9-16.2 2.8-8 2.8-14.9 2-16.2-0.8-1.3-3-2-6.3-3.6s-20.1-9.9-23.2-11c-3.1-1.2-5.4-1.7-7.6 1.7-2.2 3.3-8.8 11-10.8 13.3-2 2.4-4 2.7-7.4 1-3.4-1.6-14.1-5.2-26.9-16.6-9.9-8.8-16.6-19.6-18.6-22.9-2-3.3-.2-5.1 1.5-6.7 1.6-1.6 3.4-4.1 5.1-6.1 1.7-2 2.2-3.3 3.4-5.6 1.2-2.4.6-4.7-.3-6.5z"/>
+</svg> Contratar por WhatsApp</a>\n        </div>\n      </article>`;
+    }
+
+    $('#device-plans').innerHTML=devicePlans.map(giftCard).join('');
+    $('#full-plans').innerHTML=fullPlans.map(giftCard).join('');
+
+    const tbody=$('#credits-tbody');
+    if(tbody){tbody.innerHTML=creditPacks.map(p=>`<tr><td>${p.q}</td><td>$${p.total}</td><td>$${p.unit.toFixed(2)}</td><td><button class=\"btn primary\" data-type=\"credit\" data-credit=\"${p.q} créditos — $${p.total}\">Comprar</button></td></tr>`).join('');}
+
+    document.body.addEventListener('click',e=>{
+      const btn=e.target.closest('[data-type="plan"],[data-type="credit"],#wa-link,#wa-fab');
+      if(!btn) return;
+      if(btn.id==='wa-link'||btn.id==='wa-fab'){e.preventDefault();window.open(waMsg('Hola, quiero información de Flujo TV.'),'_blank');return;}
+      if(btn.dataset.type==='plan') sendWhatsAppMessage(`Hola, quiero contratar *${btn.dataset.plan}*.`);
+      if(btn.dataset.type==='credit') sendWhatsAppMessage(`Hola, quiero comprar *${btn.dataset.credit}* para revender.`);
+    });
+
+    function sendWhatsAppMessage(text){window.open(waMsg(text),'_blank');}
+  </script>
+
+<script>
+// Fallback: si algún estilo los deja transparentes, pintamos inline
+(function(){
+  const bg = 'linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18)';
+  const btns = document.querySelectorAll('header.wrap.nav nav a.btn');
+  btns.forEach(el => {
+    el.classList.add('menu-solid');
+    el.style.setProperty('background', bg, 'important');
+    el.style.setProperty('color', '#fff', 'important');
+    el.style.setProperty('border', 'none', 'important');
+    el.style.setProperty('opacity', '1', 'important');
+    el.style.setProperty('box-shadow', '0 10px 26px rgba(255,122,24,.28)', 'important');
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  const applySolid = () => {
+    const bg = 'linear-gradient(135deg, #ff7a18, #ffb03a, #ff7a18)';
+    document.querySelectorAll('header.wrap.nav nav a.btn').forEach(el => {
+      el.classList.remove('ghost');
+      el.style.setProperty('background-image', bg, 'important');
+      el.style.setProperty('background-color', '#ff8a1f', 'important');
+      el.style.setProperty('color', '#fff', 'important');
+      el.style.setProperty('border', 'none', 'important');
+      el.style.setProperty('opacity', '1', 'important');
+      el.style.setProperty('backdrop-filter', 'none', 'important');
+    });
+  };
+  document.addEventListener('DOMContentLoaded', applySolid);
+  window.addEventListener('load', applySolid);
+  setTimeout(applySolid, 300);
+})();
+</script>
+
+
+<script>
+(function(){
+  function ready(fn){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fn); else fn(); }
+  ready(function(){
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -5% 0px', threshold:.1}) : null;
+
+    document.querySelectorAll('.reveal').forEach(function(el){ if(io){ io.observe(el);} else { el.classList.add('revealed'); } });
+
+    var so = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var kids = Array.from(e.target.children||[]);
+          kids.forEach(function(k,i){ var d=Math.min(5,i+1); k.classList.add('d'+d,'in'); });
+          so.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.12}) : null;
+    if(so){ document.querySelectorAll('.stagger').forEach(function(el){ so.observe(el); }); }
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  function ready(fn){
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+  ready(function(){
+    var sections = Array.from(document.querySelectorAll('[data-section]'));
+    function show(hash){
+      var id = (hash || '#inicio').replace('#','');
+      sections.forEach(function(s){ s.hidden = (s.id !== id); });
+      try{ window.scrollTo({ top: 0, behavior: 'auto' }); }catch(_){ window.scrollTo(0,0); }
+    }
+    function setActive(h){
+      var target = h || '#inicio';
+      document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === target);
+      });
+    }
+    window.addEventListener('hashchange', function(){ show(location.hash); setActive(location.hash); });
+
+    document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var h = this.getAttribute('href');
+        if(history && history.pushState) history.pushState(null, '', h);
+        show(h); setActive(h);
+      });
+    });
+
+    show(location.hash || '#inicio');
+    setActive(location.hash || '#inicio');
+  });
+})();
+</script>
+<style>
+header.wrap nav a.active{
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+</style>
+
+<a id="tg-fab" href="https://t.me/luis4197" target="_blank" rel="noopener"><svg class="tg-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="18" height="18" aria-hidden="true"><defs><linearGradient id="tg_b3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2AABEE"/><stop offset="1" stop-color="#229ED9"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#tg_b3)"/><path fill="#fff" d="M178 70 39 123c-4 2-4 7 1 9l35 11 14 44c1 4 6 5 9 2l20-20 37 27c3 2 8 1 9-3l17-113c1-5-3-9-8-7zM90 169l6-19 51-47-64 41 7 25z"/></svg> Telegram</a>
+
+<script>
+(function(){
+  function ready(fn){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
+  ready(function(){
+    var sections = Array.from(document.querySelectorAll('[data-section]'));
+    function show(hash){
+      var id = (hash || '#inicio').replace('#','');
+      sections.forEach(function(s){ s.hidden = (s.id !== id); });
+      try{ window.scrollTo({ top: 0, behavior: 'auto' }); }catch(_){ window.scrollTo(0,0); }
+    }
+    function setActive(h){
+      var target = h || '#inicio';
+      document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === target);
+      });
+    }
+    // Guard against any other JS errors
+    try{
+      window.addEventListener('hashchange', function(){ show(location.hash); setActive(location.hash); });
+      document.querySelectorAll('header.wrap nav a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var h = this.getAttribute('href');
+          if(history && history.pushState) history.pushState(null, '', h);
+          show(h); setActive(h);
+        });
+      });
+    }catch(e){ /* noop */ }
+    show(location.hash || '#inicio'); setActive(location.hash || '#inicio');
+  });
+})();
+</script>
+
+</body>
+</html>
